@@ -373,13 +373,17 @@ function getMessageComponent(message) {
           <video controls src={message.body.src} />
         </MessageBubble>
       );
-    case "image":
+      //20Dash
+      //case "image":
     case "photo":
       return (
         <MessageBubble key={message.id} media>
           <img src={message.body.src} />
         </MessageBubble>
       );
+    case "image":
+      return;
+      //20Dashend
     default:
       return null;
   }

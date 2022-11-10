@@ -610,5 +610,6 @@ AFRAME.GLTFModelPlus.registerComponent("reflection-probe", "reflection-probe", (
 
 
 //20Dash
-AFRAME.GLTFModelPlus.registerComponent("proxTrig-audio", "proxTrig-audio");
+AFRAME.GLTFModelPlus.registerComponent("proxtrig-audio", "proxtrig-audio");
+AFRAME.GLTFModelPlus.registerComponent("proxtrig-anim", "proxtrig-anim");
 //20Dashend

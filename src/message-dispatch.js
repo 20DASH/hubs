@@ -32,7 +32,11 @@ export default class MessageDispatch extends EventTarget {
     }
 
     // Fade out and then remove
+    if (entry.type === "photo") return;
     setTimeout(() => {
+      //20Dash
+      console.log(entry)
+      //20Dashend
       entry.expired = true;
       this.remountUI({ presenceLogEntries: this.presenceLogEntries });
 

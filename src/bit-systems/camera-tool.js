@@ -12,7 +12,8 @@ import {
   Rigidbody,
   TextButton
 } from "../bit-components";
-import { addMedia } from "../utils/media-utils";
+import { addMedia, coerceToUrl, upload } from "../utils/media-utils";
+import { guessContentType, proxiedUrlFor } from "../utils/media-url-utils";
 import { pixelsToPNG, RenderTargetRecorder } from "../utils/render-target-recorder";
 import { isFacingCamera } from "../utils/three-utils";
 import { SOUND_CAMERA_TOOL_COUNTDOWN, SOUND_CAMERA_TOOL_TOOK_SNAPSHOT } from "../systems/sound-effects-system";
@@ -26,7 +27,9 @@ const videoCodec = ["h264", "vp9,opus", "vp8,opus", "vp9", "vp8"].find(
 );
 const videoMimeType = videoCodec ? `video/webm; codecs=${videoCodec}` : null;
 const hasWebGL2 = !!document.createElement("canvas").getContext("webgl2");
-const allowVideo = !!videoMimeType && hasWebGL2;
+//20Dash
+const allowVideo = false;
+//20Dashend
 
 const RENDER_WIDTH = 1280;
 const RENDER_HEIGHT = 720;
@@ -73,21 +76,26 @@ function grabberPressedSnapAction(world, camera) {
 }
 
 function spawnCameraFile(cameraObj, file, type) {
-  const opts = type === "video" ? { videoPaused: true } : {};
-  const { entity } = addMedia(file, "#interactable-media", undefined, `${type}-camera`, false, false, true, opts);
-  entity.addEventListener(
-    "media_resolved",
-    () => {
-      AFRAME.scenes[0].systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_CAMERA_TOOL_TOOK_SNAPSHOT);
-      // TODO animate and orient around camera
-      entity.object3D.position.copy(cameraObj.localToWorld(new THREE.Vector3(0, -0.5, 0)));
-      entity.object3D.quaternion.copy(cameraObj.quaternion);
-      entity.object3D.matrixNeedsUpdate = true;
-      APP.hubChannel.sendMessage({ src: entity.components["media-loader"].data.src }, type);
-      APP.hubChannel.sendObjectSpawnedEvent(ObjectTypes.CAMERA);
-    },
-    { once: true }
-  );
+  //20dash
+  window.APP['latest_media_file'] = file;
+  //console.log(file)
+    const opts = type === "video" ? { videoPaused: true } : {};
+    const { entity } = addMedia(file, "#interactable-media", undefined, `${type}-camera`, false, false, true, opts);
+
+    entity.addEventListener(
+      "media_resolved",
+      () => {
+        AFRAME.scenes[0].systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_CAMERA_TOOL_TOOK_SNAPSHOT);
+        // TODO animate and orient around camera
+        entity.object3D.position.copy(cameraObj.localToWorld(new THREE.Vector3(0, -1000000, 0)));
+        entity.object3D.quaternion.copy(cameraObj.quaternion);
+        entity.object3D.matrixNeedsUpdate = true;
+        APP.hubChannel.sendMessage({ src: entity.components["media-loader"].data.src }, type);
+        APP.hubChannel.sendObjectSpawnedEvent(ObjectTypes.CAMERA);
+      },
+      { once: true }
+    );
+  //20dashend
 }
 
 function createRecorder(captureAudio) {

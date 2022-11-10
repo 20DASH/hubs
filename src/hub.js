@@ -243,6 +243,7 @@ import "./load-media-on-paste-or-drop";
 
 //20Dash
 import "./components/proxTrig-audio";
+import "./components/proxTrig-anim";
 //20Dashend
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
@@ -1376,5 +1377,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   //20Dash
   console.log('Hello 20DASH');
+  //set locale to PT
+  store.update({ preferences: { locale: "pt" } });
+
+  // window.APP['prox-aud'] = {};
+  console.log(browser)
   //20Dashend
 });

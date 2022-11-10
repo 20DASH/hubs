@@ -34,14 +34,14 @@ export function PlacePopoverContainer({ scene, mediaSearchStore, showNonHistorie
             onSelect: () => scene.emit("penButtonPressed"),
             selected: hasActivePen
           },
-          hubChannel.can("spawn_camera") && {
-            id: "camera",
-            icon: CameraIcon,
-            color: "accent5",
-            label: <FormattedMessage id="place-popover.item-type.camera" defaultMessage="Camera" />,
-            onSelect: () => scene.emit("action_toggle_camera"),
-            selected: hasActiveCamera
-          }
+          // hubChannel.can("spawn_camera") && {
+          //   id: "camera",
+          //   icon: CameraIcon,
+          //   color: "accent5",
+          //   label: <FormattedMessage id="place-popover.item-type.camera" defaultMessage="Camera" />,
+          //   onSelect: () => scene.emit("action_toggle_camera"),
+          //   selected: hasActiveCamera
+          // }
         ];
 
         if (hubChannel.can("spawn_and_move_media")) {

@@ -112,8 +112,16 @@
     }
 
     // TODO replace these icons with share button
-    :local(.share) {
-      background-image: url(../images/share_message.png);
+    :local(.shareTwit) {
+      background-image: url(../images/Twitter.svg);
+    }
+
+    :local(.shareFace) {
+      background-image: url(../images/Facebook.svg);
+    }
+
+    :local(.download) {
+      background-image: url(../images/Download.svg);
     }
 
     &:local(.media) {

@@ -162,7 +162,13 @@ export const addMedia = (
 
   const nid = NAF.utils.createNetworkId();
   if (networked) {
-    entity.setAttribute("networked", { template: template, networkId: nid });
+    //20Dash
+    if (src.type) {
+      if (!src.type.includes('image')) {
+        entity.setAttribute("networked", { template: template, networkId: nid });
+      }
+    }
+    //20Dashend
   } else {
     const templateBody = document
       .importNode(document.body.querySelector(template).content, true)

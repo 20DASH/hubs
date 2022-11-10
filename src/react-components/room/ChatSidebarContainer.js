@@ -89,11 +89,14 @@ function updateMessageGroups(messageGroups, newMessage) {
           ...newMessage
         }
       ];
+    //20Dash
     case "chat":
-    case "image":
     case "photo":
     case "video":
       return processChatMessage(messageGroups, newMessage);
+    case "image":
+      return;
+    //20Dashend
     default:
       return messageGroups;
   }
@@ -111,7 +114,6 @@ export function ChatContextProvider({ messageDispatch, children }) {
 
         if (
           newMessage.type === "chat" ||
-          newMessage.type === "image" ||
           newMessage.type === "photo" ||
           newMessage.type === "video"
         ) {

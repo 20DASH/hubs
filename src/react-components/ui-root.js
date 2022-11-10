@@ -96,6 +96,10 @@ import { SignInMessages } from "./auth/SignInModal";
 import { MediaDevicesEvents } from "../utils/media-devices-utils";
 import { TERMS, PRIVACY } from "../constants";
 import { ECSDebugSidebarContainer } from "./debug-panel/ECSSidebar";
+//20Dash Mike
+import { anyEntityWith } from "../utils/bit-utils";
+import { MyCameraTool } from "../bit-components";
+//20Dash Mike End
 
 const avatarEditorDebug = qsTruthy("avatarEditorDebug");
 
@@ -1562,6 +1566,16 @@ class UIRoot extends Component {
                           <ReactionPopoverContainer
                             scene={this.props.scene}
                             initialPresence={getPresenceProfileForSession(this.props.presences, this.props.sessionId)}
+                          />
+                        )}
+                        {this.props.hubChannel.can("spawn_camera") && (
+                          <ToolbarButton
+                            icon={<CameraIcon />}
+                            preset="accent5"
+                            label={
+                              <FormattedMessage id="place-popover.item-type.camera" defaultMessage="Camera" />
+                            }
+                            onClick={() => this.props.scene.emit("action_toggle_camera")}
                           />
                         )}
                       </>

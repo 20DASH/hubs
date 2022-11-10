@@ -53,15 +53,20 @@ class PresenceLog extends Component {
           />
         );
       case "image":
+        //20Dash
         return (
-          <ImageMessage
-            key={e.key}
-            name={e.name}
-            className={classNames(entryClasses, styles.media)}
-            body={e.body}
-            maySpawn={e.maySpawn}
-          />
-        );
+          <div></div>
+        )
+        // return (
+        //   <ImageMessage
+        //     key={e.key}
+        //     name={e.name}
+        //     className={classNames(entryClasses, styles.media)}
+        //     body={e.body}
+        //     maySpawn={e.maySpawn}
+        //   />
+        // );
+        //20Dashend
       case "photo":
         return (
           <PhotoMessage
