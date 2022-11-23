@@ -1555,13 +1555,13 @@ class UIRoot extends Component {
                     {entered && (
                       <>
                         <AudioPopoverContainer scene={this.props.scene} />
-                        <SharePopoverContainer scene={this.props.scene} hubChannel={this.props.hubChannel} />
+                        {/* <SharePopoverContainer scene={this.props.scene} hubChannel={this.props.hubChannel} />
                         <PlacePopoverContainer
                           scene={this.props.scene}
                           hubChannel={this.props.hubChannel}
                           mediaSearchStore={this.props.mediaSearchStore}
                           showNonHistoriedDialog={this.showNonHistoriedDialog}
-                        />
+                        /> */}
                         {this.props.hubChannel.can("spawn_emoji") && (
                           <ReactionPopoverContainer
                             scene={this.props.scene}
