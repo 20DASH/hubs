@@ -9,7 +9,7 @@ export function Toolbar({ className, left, center, right, ...rest }) {
     <div className={classNames(styles.toolbar, className)} {...rest}>
       <div className={classNames(styles.content, styles.leftContent, styleUtils.showLg)}>{left}</div>
       <div className={classNames(styles.content, styles.centerContent)}>{center}</div>
-      <div className={classNames(styles.content, styles.rightContent, styleUtils.showLg)}>{right}</div>
+      <div className={classNames(styles.content, styles.rightContent)}>{right}</div>
     </div>
   );
 }

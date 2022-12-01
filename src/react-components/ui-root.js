@@ -1525,6 +1525,7 @@ class UIRoot extends Component {
                 modal={this.state.dialog}
                 toolbarLeft={
                   <InvitePopoverContainer
+                    className={styleUtils.showLg}
                     hub={this.props.hub}
                     hubChannel={this.props.hubChannel}
                     scene={this.props.scene}
@@ -1566,6 +1567,7 @@ class UIRoot extends Component {
                         {this.props.hubChannel.can("spawn_emoji") && (
                           <ReactionPopoverContainer
                             scene={this.props.scene}
+                            className={styleUtils.showLg}
                             initialPresence={getPresenceProfileForSession(this.props.presences, this.props.sessionId)}
                           />
                         )}
@@ -1579,9 +1581,12 @@ class UIRoot extends Component {
                             onClick={() => this.props.scene.emit("action_toggle_camera")}
                           />
                         )}
+                        <ChatToolbarButtonContainer
+                            className={styleUtils.showLg}
+                            onClick={() => this.toggleSidebar("chat")} />
                       </>
                     )}
-                    <ChatToolbarButtonContainer onClick={() => this.toggleSidebar("chat")} />
+
                     {entered && isMobileVR && (
                       <ToolbarButton
                         className={styleUtils.hideLg}
@@ -1609,8 +1614,10 @@ class UIRoot extends Component {
                     {entered && (
                       <ToolbarButton
                         icon={<LeaveIcon />}
+                        className={styleUtils.showLg}
                         label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="Leave" />}
                         preset="cancel"
+                        styles={styleUtils.showLg}
                         onClick={() => {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
                             destinationUrl: "/",
@@ -1619,7 +1626,9 @@ class UIRoot extends Component {
                         }}
                       />
                     )}
-                    <MoreMenuPopoverButton menu={moreMenu} />
+                    <MoreMenuPopoverButton
+                        className={styleUtils.showLg}
+                        menu={moreMenu} />
                   </>
                 }
               />
