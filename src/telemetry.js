@@ -1,7 +1,5 @@
 import Raven from "raven-js";
 import configs from "./utils/configs";
-import TagManager from 'react-gtm-module'
-
 
 const ga = window.ga;
 
@@ -13,12 +11,6 @@ export default function registerTelemetry(trackedPage, trackedTitle) {
     console.log("Tracking: Sentry DSN: " + sentryDsn);
     Raven.config(sentryDsn).install();
   }
-
-  const tagManagerArgs = {
-    gtmId: 'G-VB9W84LPKN'
-  }
-
-  TagManager.initialize(tagManagerArgs)
 
   if (ga && gaTrackingId) {
     console.log("Tracking: Google Analytics ID: " + gaTrackingId);
