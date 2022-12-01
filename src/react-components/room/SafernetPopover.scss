@@ -1,0 +1,14 @@
+@use "../styles/theme.scss";
+
+:local(.safernet-popover) {
+  width: 100%;
+
+  @media(min-width: theme.$breakpoint-lg) and (min-height: theme.$breakpoint-vr) {
+    padding-top: 8px;
+    width: 360px;
+  }
+
+  p {
+    text-align: left;
+  }
+}

@@ -99,6 +99,7 @@ import { ECSDebugSidebarContainer } from "./debug-panel/ECSSidebar";
 //20Dash Mike
 import { anyEntityWith } from "../utils/bit-utils";
 import { MyCameraTool } from "../bit-components";
+import {SafernetPopoverContainer} from "./room/SafernetPopoverContainer";
 //20Dash Mike End
 
 const avatarEditorDebug = qsTruthy("avatarEditorDebug");
@@ -1594,6 +1595,9 @@ class UIRoot extends Component {
                 }
                 toolbarRight={
                   <>
+                    <SafernetPopoverContainer
+                        scene={this.props.scene}
+                    />
                     {entered && isMobileVR && (
                       <ToolbarButton
                         icon={<VRIcon />}

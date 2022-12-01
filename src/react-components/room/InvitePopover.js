@@ -8,6 +8,8 @@ import { ReactComponent as InviteIcon } from "../icons/Invite.svg";
 import { Column } from "../layout/Column";
 import { InviteLinkInputField } from "./InviteLinkInputField";
 import { FormattedMessage, defineMessage, useIntl } from "react-intl";
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+
 
 function InvitePopoverContent({ url, embed, inviteRequired, fetchingInvite, inviteUrl, revokeInvite }) {
   return (
@@ -23,13 +25,28 @@ function InvitePopoverContent({ url, embed, inviteRequired, fetchingInvite, invi
             value={url}
             buttonPreset="accent3"
           />
-          {embed && (
+          <div>
+            <FacebookShareButton
+                url={url}     //eg. https://www.example.com
+                hashtag={"#postsnãopostados"} // #hashTag
+            >
+              <FacebookIcon />
+            </FacebookShareButton>
+            <WhatsappShareButton
+                url={url}     //eg. https://www.example.com
+                title={""}
+            >
+              <WhatsappIcon />
+            </WhatsappShareButton>
+          </div>
+
+          {/* {embed && (
             <CopyableTextInputField
               label={<FormattedMessage id="invite-popover.embed-code" defaultMessage="Embed Code" />}
               value={embed}
               buttonPreset="accent5"
             />
-          )}
+          )}*/}
         </>
       )}
     </Column>
