@@ -1,7 +1,7 @@
 import Raven from "raven-js";
 import configs from "./utils/configs";
+import { gtag, install } from 'ga-gtag';
 
-const ga = window.ga;
 
 export default function registerTelemetry(trackedPage, trackedTitle) {
   const sentryDsn = configs.SENTRY_DSN;
@@ -12,19 +12,15 @@ export default function registerTelemetry(trackedPage, trackedTitle) {
     Raven.config(sentryDsn).install();
   }
 
-  if (ga && gaTrackingId) {
+  if (gaTrackingId) {
     console.log("Tracking: Google Analytics ID: " + gaTrackingId);
+    install(gaTrackingId,  { 'send_page_view': false });
+    gtag('event', 'pageview', {
+      page:{
+        title: trackedTitle,
+        page: trackedPage
+      }
+    });
 
-    ga("create", gaTrackingId, "auto");
-
-    if (trackedPage) {
-      ga("set", "page", trackedPage);
-    }
-
-    if (trackedTitle) {
-      ga("set", "title", trackedTitle);
-    }
-
-    ga("send", "pageview");
   }
 }
