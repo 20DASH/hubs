@@ -50,6 +50,7 @@ import { MicSetupModalContainer } from "./room/MicSetupModalContainer";
 import { InvitePopoverContainer } from "./room/InvitePopoverContainer";
 import { MoreMenuPopoverButton, CompactMoreMenuButton, MoreMenuContextProvider } from "./room/MoreMenuPopover";
 import { ChatSidebarContainer, ChatContextProvider, ChatToolbarButtonContainer } from "./room/ChatSidebarContainer";
+import { TipsToolbarButton } from "./room/TipsToolbarButton";
 import { ContentMenu, TipsMenuButton, PeopleMenuButton, ObjectsMenuButton, ECSDebugMenuButton } from "./room/ContentMenu";
 import { ReactComponent as CameraIcon } from "./icons/Camera.svg";
 import { ReactComponent as AvatarIcon } from "./icons/Avatar.svg";
@@ -1594,6 +1595,9 @@ class UIRoot extends Component {
                         <ChatToolbarButtonContainer
                             className={styleUtils.showLg}
                             onClick={() => this.toggleSidebar("chat")} />
+                        <TipsToolbarButton
+                            className={styleUtils.showLg}
+                            onClick={() => this.toggleSidebar("tips")} />
                       </>
                     )}
 
