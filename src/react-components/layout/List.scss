@@ -47,9 +47,30 @@
     &:hover {
       background-color: theme.$active-color-hover;
     }
-  
+
     &:active {
       background-color: theme.$active-color-pressed;
     }
+  }
+}
+
+:local(.tipsButtom) {
+  flex-direction: column;
+  align-items: baseline;
+
+  >span {
+    display: flex;
+
+  }
+
+  svg {
+    fill: theme.$text1-color;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .tipContent {
+    padding-left: 30px;
   }
 }

@@ -50,7 +50,7 @@ import { MicSetupModalContainer } from "./room/MicSetupModalContainer";
 import { InvitePopoverContainer } from "./room/InvitePopoverContainer";
 import { MoreMenuPopoverButton, CompactMoreMenuButton, MoreMenuContextProvider } from "./room/MoreMenuPopover";
 import { ChatSidebarContainer, ChatContextProvider, ChatToolbarButtonContainer } from "./room/ChatSidebarContainer";
-import { ContentMenu, PeopleMenuButton, ObjectsMenuButton, ECSDebugMenuButton } from "./room/ContentMenu";
+import { ContentMenu, TipsMenuButton, PeopleMenuButton, ObjectsMenuButton, ECSDebugMenuButton } from "./room/ContentMenu";
 import { ReactComponent as CameraIcon } from "./icons/Camera.svg";
 import { ReactComponent as AvatarIcon } from "./icons/Avatar.svg";
 import { ReactComponent as AddIcon } from "./icons/Add.svg";
@@ -72,6 +72,7 @@ import { ReactComponent as InviteIcon } from "./icons/Invite.svg";
 import { PeopleSidebarContainer, userFromPresence } from "./room/PeopleSidebarContainer";
 import { ObjectListProvider } from "./room/useObjectList";
 import { ObjectsSidebarContainer } from "./room/ObjectsSidebarContainer";
+import { TipsSidebarContainer } from "./room/TipsSidebarContainer";
 import { ObjectMenuContainer } from "./room/ObjectMenuContainer";
 import { useCssBreakpoints } from "react-use-css-breakpoints";
 import { PlacePopoverContainer } from "./room/PlacePopoverContainer";
@@ -1361,6 +1362,10 @@ class UIRoot extends Component {
                     {(!this.props.selectedObject ||
                       (this.props.breakpoint !== "sm" && this.props.breakpoint !== "md")) && (
                       <ContentMenu>
+                        <TipsMenuButton 
+                        active={this.state.sidebarId === "tips"}
+                        onClick={() => this.toggleSidebar("tips")}
+                        />
                         {showObjectList && (
                           <ObjectsMenuButton
                             active={this.state.sidebarId === "objects"}
@@ -1443,6 +1448,11 @@ class UIRoot extends Component {
                       {this.state.sidebarId === "objects" && (
                         <ObjectsSidebarContainer
                           hubChannel={this.props.hubChannel}
+                          onClose={() => this.setSidebar(null)}
+                        />
+                      )}
+                      {this.state.sidebarId === "tips" && (
+                        <TipsSidebarContainer
                           onClose={() => this.setSidebar(null)}
                         />
                       )}
