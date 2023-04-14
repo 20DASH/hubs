@@ -1,8 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { NoObjects, ObjectsSidebar, ObjectsSidebarItem } from "./TipsSidebar";
-import { List } from "../layout/List";
 import { Divider } from "../layout/Divider";
 import { useObjectList } from "./useObjectList";
 import { Sidebar } from "../sidebar/Sidebar";
@@ -52,28 +50,6 @@ export function TipsSidebarContainer({ onClose, hubChannel }) {
   </Sidebar>
   );
 
-  return (
-    <ObjectsSidebar objectCount={tips.length} onClose={onClose}>
-      {tips.length > 0 ? (
-        <List ref={listRef}>
-          {tips.map(object => (
-            <ObjectsSidebarItem
-              selected={selectedObject === object}
-              object={object}
-              key={object.id}
-              onClick={() => selectObject(object)}
-              onMouseOver={() => focusObject(object)}
-              onFocus={() => focusObject(object)}
-              onMouseOut={onUnfocusListItem}
-              onBlur={onUnfocusListItem}
-            />
-          ))}
-        </List>
-      ) : (
-        <NoObjects canAddObjects={hubChannel.can("spawn_and_move_media")} />
-      )}
-    </ObjectsSidebar>
-  );
 }
 
 TipsSidebarContainer.propTypes = {

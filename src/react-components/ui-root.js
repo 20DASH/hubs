@@ -74,6 +74,7 @@ import { PeopleSidebarContainer, userFromPresence } from "./room/PeopleSidebarCo
 import { ObjectListProvider } from "./room/useObjectList";
 import { ObjectsSidebarContainer } from "./room/ObjectsSidebarContainer";
 import { TipsSidebarContainer } from "./room/TipsSidebarContainer";
+import { LegalSidebarContainer } from "./room/LegalSidebarContainer";
 import { ObjectMenuContainer } from "./room/ObjectMenuContainer";
 import { useCssBreakpoints } from "react-use-css-breakpoints";
 import { PlacePopoverContainer } from "./room/PlacePopoverContainer";
@@ -203,7 +204,7 @@ class UIRoot extends Component {
 
     objectInfo: null,
     objectSrc: "",
-    sidebarId: null,
+    sidebarId: "legal",
     presenceCount: 0,
     chatInputEffect: () => {}
   };
@@ -1434,7 +1435,7 @@ class UIRoot extends Component {
                   </>
                 }
                 sidebar={
-                  this.state.sidebarId ? (
+                  (this.state.entered && this.state.sidebarId) || (!this.state.entered && this.state.sidebarId && this.state.sidebarId !== "legal") ? (
                     <>
                       {this.state.sidebarId === "chat" && (
                         <ChatSidebarContainer
@@ -1454,6 +1455,11 @@ class UIRoot extends Component {
                       )}
                       {this.state.sidebarId === "tips" && (
                         <TipsSidebarContainer
+                          onClose={() => this.setSidebar(null)}
+                        />
+                      )}
+                      {this.state.sidebarId === "legal" && this.state.entered && (
+                        <LegalSidebarContainer
                           onClose={() => this.setSidebar(null)}
                         />
                       )}
