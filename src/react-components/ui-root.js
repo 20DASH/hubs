@@ -204,7 +204,8 @@ class UIRoot extends Component {
 
     objectInfo: null,
     objectSrc: "",
-    sidebarId: "legal",
+    legalAccepted: localStorage.getItem('__safernet_legal_accepted') === 'true',
+    sidebarId: localStorage.getItem('__safernet_legal_accepted') === 'true' ? null : "legal",
     presenceCount: 0,
     chatInputEffect: () => {}
   };
@@ -1460,7 +1461,10 @@ class UIRoot extends Component {
                       )}
                       {this.state.sidebarId === "legal" && this.state.entered && (
                         <LegalSidebarContainer
-                          onClose={() => this.setSidebar(null)}
+                          onClose={() => {
+                            localStorage.setItem('__safernet_legal_accepted', true)
+                            this.setSidebar(null)
+                          }}
                         />
                       )}
                       {this.state.sidebarId === "people" && (
