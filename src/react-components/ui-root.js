@@ -204,8 +204,7 @@ class UIRoot extends Component {
 
     objectInfo: null,
     objectSrc: "",
-    legalAccepted: localStorage.getItem('__safernet_legal_accepted') === 'true',
-    sidebarId: localStorage.getItem('__safernet_legal_accepted') === 'true' ? null : "legal",
+    sidebarId: null,
     presenceCount: 0,
     chatInputEffect: () => {}
   };
@@ -1436,7 +1435,7 @@ class UIRoot extends Component {
                   </>
                 }
                 sidebar={
-                  (this.state.entered && this.state.sidebarId) || (!this.state.entered && this.state.sidebarId && this.state.sidebarId !== "legal") ? (
+                  this.state.sidebarId ? (
                     <>
                       {this.state.sidebarId === "chat" && (
                         <ChatSidebarContainer
@@ -1457,14 +1456,6 @@ class UIRoot extends Component {
                       {this.state.sidebarId === "tips" && (
                         <TipsSidebarContainer
                           onClose={() => this.setSidebar(null)}
-                        />
-                      )}
-                      {this.state.sidebarId === "legal" && this.state.entered && (
-                        <LegalSidebarContainer
-                          onClose={() => {
-                            localStorage.setItem('__safernet_legal_accepted', true)
-                            this.setSidebar(null)
-                          }}
                         />
                       )}
                       {this.state.sidebarId === "people" && (
@@ -1607,7 +1598,8 @@ class UIRoot extends Component {
                             onClick={() => this.toggleSidebar("chat")} />
                         <TipsToolbarButton
                             className={styleUtils.showLg}
-                            onClick={() => this.toggleSidebar("tips")} />
+                            onClick={() => this.toggleSidebar("tips")} 
+                            />
                       </>
                     )}
 
@@ -1681,9 +1673,19 @@ function UIRootHooksWrapper(props) {
       el.remove();
     }, 500);
 
+    props.scene.addEventListener("action_toggle_tips", () => {
+      this.setSidebar(this.props.scene.is('tips_on') ? null : 'tips')
+    });
+  
+    props.scene.addEventListener("action_toggle_chat", () => {
+      this.setSidebar(this.props.scene.is('chat_on') ? null : 'chat')
+    });
+
     return () => {
       clearTimeout(timeout);
       sceneEl.classList.remove(roomLayoutStyles.scene);
+      props.scene.removeEventListener("action_toggle_tips");
+      props.scene.removeEventListener("action_toggle_chat");
     };
   }, [props.scene]);
 

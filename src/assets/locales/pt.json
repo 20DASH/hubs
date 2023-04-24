@@ -121,6 +121,7 @@
   "close-room-modal.title": "Fechar Espaço",
   "close-room-modal.type-to-confirm": "Digite o nome do espaço para confirmar: {roomName}",
   "content-menu.objects-menu-button": "Objetos",
+  "content-menu.tips-menu-button": "Dicas Safernet",
   "content-menu.people-menu-button": "Pessoas ({presenceCount})",
   "copyable-text-input-field.copied-label": "Copiado",
   "copyable-text-input-field.copy-label": "Copiar",

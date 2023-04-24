@@ -122,6 +122,7 @@
 	"close-room-modal.title": "關閉房間",
 	"close-room-modal.type-to-confirm": "輸入房間名來確認: {roomName}",
 	"content-menu.objects-menu-button": "物件",
+	"content-menu.tips-menu-button": "Safernet Tips",
 	"content-menu.people-menu-button": "參與人 ({presenceCount})",
 	"copyable-text-input-field.copied-label": "已複製",
 	"copyable-text-input-field.copy-label": "複製",
@@ -645,4 +646,3 @@
 	"webvr-unsupported-modal.webvr-rocks-link": "支援實驗VR的瀏覽器清單請見<a>WebVR Rocks</a>.",
 	"whats-new-page.title": "新消息"
 }
-   

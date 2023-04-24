@@ -119,6 +119,7 @@
   "close-room-modal.title": "Fermer la salle",
   "close-room-modal.type-to-confirm": "Entrer le nom de la salle pour confirmer : {roomName}",
   "content-menu.objects-menu-button": "Objets",
+  "content-menu.tips-menu-button": "Conseils Safernet",
   "content-menu.people-menu-button": "Personnes ({presenceCount})",
   "copyable-text-input-field.copied-label": "Copié",
   "copyable-text-input-field.copy-label": "Copier",

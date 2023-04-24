@@ -11,7 +11,7 @@ export function LegalSidebarContainer({ onClose}) {
     <Sidebar
     title={
       <FormattedMessage
-        id="tips-sidebar.title"
+        id="content-menu.tips-menu-button"
         defaultMessage="Dicas Safernet"
         values=""
       />

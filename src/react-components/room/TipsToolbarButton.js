@@ -11,7 +11,7 @@ export function TipsToolbarButton(props) {
       className={styles.tipsToolbarButton}
       icon={<BookIcon />}
       preset="accent4"
-      label={<FormattedMessage id="chat-toolbar-button" defaultMessage="Chat" />}
+      label={<FormattedMessage id="tips-toolbar-button" defaultMessage="Dicas" />}
     />
   );
 }

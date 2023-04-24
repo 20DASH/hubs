@@ -9,7 +9,7 @@ import { CloseButton } from "../input/CloseButton";
 import styles from "../layout/List.scss";
 import { ReactComponent as TipsIcon } from "../icons/Book.svg";
 
-export function TipsSidebarContainer({ onClose, hubChannel }) {
+export function TipsSidebarContainer({ onClose }) {
   const listRef = useRef();
   const tips = [1,2,3,4];
   const { selectedObject, selectObject, unfocusObject, focusObject } = useObjectList();
@@ -28,7 +28,7 @@ export function TipsSidebarContainer({ onClose, hubChannel }) {
     <Sidebar
     title={
       <FormattedMessage
-        id="tips-sidebar.title"
+        id="content-menu.tips-menu-button"
         defaultMessage="Dicas Safernet"
         values=""
       />
@@ -36,7 +36,7 @@ export function TipsSidebarContainer({ onClose, hubChannel }) {
     beforeTitle={<CloseButton onClick={onClose} />}
   >
     <ul>
-      {tips.map(tip=><li className={classNames(styles.listItem)}>
+      {tips.map(tip=><li className={classNames(styles.listItem)} key={tip.toString()}>
         <button className={classNames(styles.listItemContent, styles.buttonListItem, styles.tipsButtom)}
            onClick={()=>setShow(tip)}>
           <span><TipsIcon /> DICA {tip}</span>
@@ -53,6 +53,5 @@ export function TipsSidebarContainer({ onClose, hubChannel }) {
 }
 
 TipsSidebarContainer.propTypes = {
-  hubChannel: PropTypes.object.isRequired,
   onClose: PropTypes.func
 };

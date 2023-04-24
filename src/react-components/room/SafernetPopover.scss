@@ -10,5 +10,15 @@
 
   p {
     text-align: left;
+    line-height: 1.6em;
   }
+
+}
+
+:local(.titleBox) {
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 0.5em auto;
+  font-weight: 700;
+  display: block;
 }

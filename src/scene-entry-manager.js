@@ -86,6 +86,7 @@ export default class SceneEntryManager {
     this._setupKicking();
     this._setupMedia();
     this._setupCamera();
+    this._setupExtraMenu();
 
     if (qsTruthy("offline")) return;
 
@@ -438,6 +439,23 @@ export default class SceneEntryManager {
 
         this.scene.addState("camera");
       }
+    });
+  };
+
+  _setupExtraMenu = () => {
+    this.scene.addEventListener("action_toggle_help", () => {
+      localStorage.setItem("__safernet_legal_accepted", "true");
+      console.log('_setupExtraMenu_help')
+      this.scene.is('help_on') ? this.scene.removeState('help_on') : this.scene.addState('help_on') 
+    });
+    this.scene.addEventListener("action_toggle_chat", () => {
+      this.scene.is('chat_on') ? this.scene.removeState('chat_on') : this.scene.addState('chat_on') 
+    });
+    this.scene.addEventListener("action_toggle_tips", () => {
+      this.scene.is('tips_on') ? this.scene.removeState('tips_on') : this.scene.addState('tips_on') 
+    });
+    this.scene.addEventListener("action_toggle_react", () => {
+      this.scene.is('react_on') ? this.scene.removeState('react_on') : this.scene.addState('react_on') 
     });
   };
 

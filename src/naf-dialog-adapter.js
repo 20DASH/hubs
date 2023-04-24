@@ -58,6 +58,9 @@ export class DialogAdapter extends EventEmitter {
     this.scene = null;
     this._serverParams = {};
     this._consumerStats = {};
+    this._chatEnabled = false;
+    this._tipsEnabled = false;
+    this._reactEnabled = false;
   }
 
   get consumerStats() {
@@ -925,6 +928,34 @@ export class DialogAdapter extends EventEmitter {
     return this._micProducer && !this._micProducer.paused;
   }
 
+  get isChatActive() {
+    return this._chatEnabled
+  }
+  toggleChat() {
+    this._chatEnabled = !this._chatEnabled;
+  }
+
+  get isTipsActive() {
+    return this._tipsEnabled
+  }
+  toggleTips() {
+    this._tipsEnabled = !this._tipsEnabled;
+  }
+
+  get isReactActive() {
+    return this._reactEnabled
+  }
+  toggleTips() {
+    this._reactEnabled = !this._reactEnabled;
+  }
+
+  get isHelpActive() {
+    return this._helpEnabled
+  }
+  toggleTips() {
+    this._helpEnabled = !this._helpEnabled;
+  }
+
   cleanUpLocalState() {
     this._sendTransport && this._sendTransport.close();
     this._sendTransport = null;
@@ -933,6 +964,9 @@ export class DialogAdapter extends EventEmitter {
     this._micProducer = null;
     this._shareProducer = null;
     this._cameraProducer = null;
+    this._chatEnabled = null;
+    this._tipsEnabled = null;
+    this._reactEnabled = null;
   }
 
   disconnect() {

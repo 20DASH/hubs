@@ -29,6 +29,7 @@ export function SafernetPopoverContainer({scene}) {
   return (
     <SafernetPopoverButton
       popoverApiRef={popoverApiRef}
+      scene={scene}
     />
   );
 }
