@@ -244,13 +244,17 @@ export async function createAndRedirectToNewHub(name, sceneId, replace) {
       store.update({ embedTokens: [{ hubId: hub.hub_id, embedToken: embedToken }] });
     }
   }
-
   if (isLocalClient()) {
     url = `/hub.html?hub_id=${hub.hub_id}`;
   }
+  else {
+    url = url +'/'+hub.hub_id + '/'+hub.name
+  }
 
+  console.log("URL ####")
+  console.log(url +'/'+hub.hub_id + '/'+hub.name)
   if (replace) {
-    document.location.replace(url);
+    document.location.replace(url); //${hub.hub_id}/hub.name
   } else {
     document.location = url;
   }

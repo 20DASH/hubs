@@ -33,7 +33,7 @@ export function HomePage() {
   const wrapInBold = chunk => <b>{chunk}</b>;
   useEffect(() => {
     const qs = new URLSearchParams(location.search);
-    createAndRedirectToNewHub(null, null, true);
+    createAndRedirectToNewHub(null, null, false);
     // Support legacy sign in urls.
     if (qs.has("sign_in")) {
       const redirectUrl = new URL("/signin", window.location);
