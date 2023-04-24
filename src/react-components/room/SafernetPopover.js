@@ -42,11 +42,12 @@ SafernetPopoverContent.propTypes = {};
 export function SafernetPopoverButton({
   popoverApiRef,
   scene,
+  entered,
   ...rest
 }) {
 
   const title = "Canal de Ajuda";
-  const [visible, setVisible] = useState(localStorage.getItem('__safernet_legal_accepted') === 'true' ? false : true);
+  const [visible, setVisible] = useState(entered && localStorage.getItem('__safernet_legal_accepted') !== 'true' );
 
   const toggleVis = () => {
     setVisible(!visible)

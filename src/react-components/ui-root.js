@@ -1618,6 +1618,7 @@ class UIRoot extends Component {
                   <>
                     <SafernetPopoverContainer
                         scene={this.props.scene}
+                        entered={this.state.entered}
                     />
                     {entered && isMobileVR && (
                       <ToolbarButton
