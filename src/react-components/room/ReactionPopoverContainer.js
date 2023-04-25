@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
 import { ReactionPopoverButton } from "./ReactionPopover";
 import { spawnEmojiInFrontOfUser, emojis } from "../../components/emoji";
 import { defineMessages, useIntl } from "react-intl";
