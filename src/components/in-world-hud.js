@@ -12,11 +12,11 @@ AFRAME.registerComponent("in-world-hud", {
     this.cameraBtn = this.el.querySelector(".camera-btn");
     this.inviteBtn = this.el.querySelector(".invite-btn");
     this.background = this.el.querySelector(".bg");
-
+/*
     this.chatBtn = this.el.querySelector(".chat-btn");
     this.reactBtn = this.el.querySelector(".react-btn");
     this.tipsBtn = this.el.querySelector(".tips-btn");
-    this.helpBtn = this.el.querySelector(".help-btn");
+    this.helpBtn = this.el.querySelector(".help-btn");*/
 
     this.onMicStateChanged = () => {
       this.mic.setAttribute("mic-button", "active", APP.dialog.isMicEnabled);
@@ -27,10 +27,10 @@ AFRAME.registerComponent("in-world-hud", {
       this.mic.setAttribute("mic-button", "active", APP.dialog.isMicEnabled);
       this.pen.setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
       this.cameraBtn.setAttribute("icon-button", "active", this.el.sceneEl.is("camera"));
-      this.tipsBtn.setAttribute("icon-button", "active", APP.dialog.isTipsActive);
+      /*this.tipsBtn.setAttribute("icon-button", "active", APP.dialog.isTipsActive);
       this.chatBtn.setAttribute("icon-button", "active", APP.dialog.isChatActive);
       this.reactBtn.setAttribute("icon-button", "active", APP.dialog.isReactActive);
-      this.helpBtn.setAttribute("icon-button", "active", APP.dialog.isReactActive);
+      this.helpBtn.setAttribute("icon-button", "active", APP.dialog.isReactActive);*/
 
       if (window.APP.hubChannel) {
         this.spawn.setAttribute("icon-button", "disabled", !window.APP.hubChannel.can("spawn_and_move_media"));
@@ -98,10 +98,10 @@ AFRAME.registerComponent("in-world-hud", {
     this.pen.object3D.addEventListener("interact", this.onPenClick);
     this.cameraBtn.object3D.addEventListener("interact", this.onCameraClick);
     this.inviteBtn.object3D.addEventListener("interact", this.onInviteClick);
-    this.helpBtn.object3D.addEventListener("interact", this.onHelpClick);
+    /*this.helpBtn.object3D.addEventListener("interact", this.onHelpClick);
     this.chatBtn.object3D.addEventListener("interact", this.onChatClick);
     this.reactBtn.object3D.addEventListener("interact", this.onReactClick);
-    this.tipsBtn.object3D.addEventListener("interact", this.onTipsClick);
+    this.tipsBtn.object3D.addEventListener("interact", this.onTipsClick);*/
   },
 
   pause() {
@@ -115,9 +115,9 @@ AFRAME.registerComponent("in-world-hud", {
     this.pen.object3D.removeEventListener("interact", this.onPenClick);
     this.cameraBtn.object3D.removeEventListener("interact", this.onCameraClick);
     this.inviteBtn.object3D.removeEventListener("interact", this.onInviteClick);
-    this.helpBtn.object3D.removeEventListener("interact", this.onHelpClick);
+   /* this.helpBtn.object3D.removeEventListener("interact", this.onHelpClick);
     this.chatBtn.object3D.removeEventListener("interact", this.onChatClick);
     this.reactBtn.object3D.removeEventListener("interact", this.onReactClick);
-    this.tipsBtn.object3D.removeEventListener("interact", this.onTipsClick);
+    this.tipsBtn.object3D.removeEventListener("interact", this.onTipsClick);*/
   }
 });
