@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { ReactionPopoverButton } from "./ReactionPopover";
@@ -35,6 +35,7 @@ function usePresence(scene, initialPresence) {
 export function ReactionPopoverContainer({ scene, initialPresence }) {
   const intl = useIntl();
   const presence = usePresence(scene, initialPresence);
+  const [ visible, setVisible] = useState(false)
 
   const items = emojis.map(emoji => ({
     src: emoji.particleEmitterConfig.src,
@@ -54,7 +55,17 @@ export function ReactionPopoverContainer({ scene, initialPresence }) {
     [presence]
   );
 
-  return <ReactionPopoverButton items={items} presence={presence} onToggleHandRaised={onToggleHandRaised} />;
+  const toggleVis = () => {
+    setVisible(!visible)
+  }
+  useEffect(() => {
+    scene.addEventListener("action_toggle_react", toggleVis);
+    return () => {
+      scene.removeEventListener("action_toggle_react", toggleVis);
+    }
+  }, [scene, visible]);
+
+  return <ReactionPopoverButton items={items} presence={presence} onToggleHandRaised={onToggleHandRaised} visible={visible}/>;
 }
 
 ReactionPopoverContainer.propTypes = {

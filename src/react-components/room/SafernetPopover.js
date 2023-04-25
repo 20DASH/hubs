@@ -51,7 +51,6 @@ export function SafernetPopoverButton({
 
   const toggleVis = () => {
     setVisible(!visible)
-    console.log("action_toggle_help", visible)
   }
   useEffect(() => {
     scene.addEventListener("action_toggle_help", toggleVis);

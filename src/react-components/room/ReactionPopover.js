@@ -60,7 +60,7 @@ TooltipPopoverContent.propTypes = {
   onToggleHandRaised: PropTypes.func
 };
 
-export function ReactionPopoverButton({ items, presence, onToggleHandRaised }) {
+export function ReactionPopoverButton({ items, presence, onToggleHandRaised, visible }) {
   const [isReactionsVisible, setIsReactionsVisible] = useState(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const intl = useIntl();
@@ -94,9 +94,9 @@ export function ReactionPopoverButton({ items, presence, onToggleHandRaised }) {
       offsetDistance={28}
       popoverApiRef={popoverApiRef}
       showHeader={!isTooltipVisible}
-      isVisible={isReactionsVisible || isTooltipVisible}
-      onChangeVisible={visible => {
-        if (!visible) {
+      isVisible={isReactionsVisible || isTooltipVisible || visible}
+      onChangeVisible={visibleB => {
+        if (!visibleB) {
           setIsReactionsVisible(false);
           setIsTooltipVisible(presence.hand_raised);
         }
