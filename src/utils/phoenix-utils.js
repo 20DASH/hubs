@@ -248,15 +248,13 @@ export async function createAndRedirectToNewHub(name, sceneId, replace) {
     url = `/hub.html?hub_id=${hub.hub_id}`;
   }
   else {
-    url = url +'/'+hub.hub_id + '/'+hub.name
+    url = '/' + hub.hub_id + '/' + payload.hub.name.replace(/\s+/g, '-').toLowerCase()
   }
 
-  console.log("URL ####")
-  console.log(url +'/'+hub.hub_id + '/'+hub.name)
   if (replace) {
-    document.location.replace(url); //${hub.hub_id}/hub.name
+    window.location.replace(url); //${hub.hub_id}/hub.name
   } else {
-    document.location = url;
+    window.location.href = url;
   }
 }
 
