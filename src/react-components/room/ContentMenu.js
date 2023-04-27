@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import { joinChildren } from "../misc/joinChildren";
 import styles from "./ContentMenu.scss";
 import { ReactComponent as ObjectsIcon } from "../icons/Objects.svg";
+import { ReactComponent as TipsIcon } from "../icons/Book.svg";
 import { ReactComponent as PeopleIcon } from "../icons/People.svg";
 import { FormattedMessage } from "react-intl";
 
-export function ContentMenuButton({ active, children, ...props }) {
+export function ContentMenuButton({ active, children, tips, ...props }) {
   return (
-    <button className={className(styles.contentMenuButton, { [styles.active]: active })} {...props}>
+    <button className={className(styles.contentMenuButton, tips && styles.tips, { [styles.active]: active })} {...props}>
       {children}
     </button>
   );
@@ -37,6 +38,17 @@ export function ObjectsMenuButton(props) {
       <ObjectsIcon />
       <span>
         <FormattedMessage id="content-menu.objects-menu-button" defaultMessage="Objects" />
+      </span>
+    </ContentMenuButton>
+  );
+}
+
+export function TipsMenuButton(props) {
+  return (
+    <ContentMenuButton {...props} tips>
+      <TipsIcon />
+      <span>
+        <FormattedMessage id="content-menu.tips-menu-button" defaultMessage="Dicas Safernet" />
       </span>
     </ContentMenuButton>
   );

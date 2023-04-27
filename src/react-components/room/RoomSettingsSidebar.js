@@ -43,7 +43,7 @@ export function RoomSettingsSidebar({
     () => {
       if (!spawnAndMoveMedia) {
         setValue("member_permissions.spawn_camera", true, { shouldDirty: true });
-        setValue("member_permissions.pin_objects", true, { shouldDirty: true });
+        setValue("member_permissions.pin_objects", false, { shouldDirty: true });
       }
     },
     [spawnAndMoveMedia, setValue]

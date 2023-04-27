@@ -248,11 +248,11 @@ export async function createAndRedirectToNewHub(name, sceneId, replace) {
   if (isLocalClient()) {
     url = `/hub.html?hub_id=${hub.hub_id}`;
   }
-
+  
   if (replace) {
-    document.location.replace(url);
+    window.location.replace(url);
   } else {
-    document.location = url;
+    window.location.href = url;
   }
 }
 

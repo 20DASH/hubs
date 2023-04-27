@@ -29,7 +29,7 @@
   align-items: center;
   padding: 8px 10px;
 
-  & > * {
+  &>* {
     margin-right: 8px;
 
     &:last-child {
@@ -47,6 +47,18 @@
 
   svg {
     color: theme.$text1-color;
+  }
+}
+
+:local(.tips) {
+  svg {
+    fill: theme.$text1-color;
+    width: 20px;
+    height: 20px;
+  }
+
+  .active svg {
+    fill: theme.$text5-color;
   }
 }
 

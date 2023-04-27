@@ -3,7 +3,7 @@ import { SafernetPopoverButton } from "./SafernetPopover";
 import { handleExitTo2DInterstitial } from "../../utils/vr-interstitial";
 import PropTypes from "prop-types";
 
-export function SafernetPopoverContainer({scene}) {
+export function SafernetPopoverContainer({scene, entered}) {
 
   const popoverApiRef = useRef();
 
@@ -29,6 +29,8 @@ export function SafernetPopoverContainer({scene}) {
   return (
     <SafernetPopoverButton
       popoverApiRef={popoverApiRef}
+      scene={scene}
+      entered={entered}
     />
   );
 }

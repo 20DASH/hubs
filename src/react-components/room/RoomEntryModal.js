@@ -68,7 +68,7 @@ export function RoomEntryModal({
               </span>
             </Button>
           )}
-          {showOptions &&
+          {/*showOptions &&
             breakpoint !== "sm" && (
               <>
                 <hr className={styleUtils.showLg} />
@@ -79,7 +79,7 @@ export function RoomEntryModal({
                   </span>
                 </Button>
               </>
-            )}
+            )*/}
         </Column>
       </Column>
     </Modal>

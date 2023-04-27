@@ -50,7 +50,8 @@ import { MicSetupModalContainer } from "./room/MicSetupModalContainer";
 import { InvitePopoverContainer } from "./room/InvitePopoverContainer";
 import { MoreMenuPopoverButton, CompactMoreMenuButton, MoreMenuContextProvider } from "./room/MoreMenuPopover";
 import { ChatSidebarContainer, ChatContextProvider, ChatToolbarButtonContainer } from "./room/ChatSidebarContainer";
-import { ContentMenu, PeopleMenuButton, ObjectsMenuButton, ECSDebugMenuButton } from "./room/ContentMenu";
+import { TipsToolbarButton } from "./room/TipsToolbarButton";
+import { ContentMenu, TipsMenuButton, PeopleMenuButton, ObjectsMenuButton, ECSDebugMenuButton } from "./room/ContentMenu";
 import { ReactComponent as CameraIcon } from "./icons/Camera.svg";
 import { ReactComponent as AvatarIcon } from "./icons/Avatar.svg";
 import { ReactComponent as AddIcon } from "./icons/Add.svg";
@@ -72,6 +73,8 @@ import { ReactComponent as InviteIcon } from "./icons/Invite.svg";
 import { PeopleSidebarContainer, userFromPresence } from "./room/PeopleSidebarContainer";
 import { ObjectListProvider } from "./room/useObjectList";
 import { ObjectsSidebarContainer } from "./room/ObjectsSidebarContainer";
+import { TipsSidebarContainer } from "./room/TipsSidebarContainer";
+import { LegalSidebarContainer } from "./room/LegalSidebarContainer";
 import { ObjectMenuContainer } from "./room/ObjectMenuContainer";
 import { useCssBreakpoints } from "react-use-css-breakpoints";
 import { PlacePopoverContainer } from "./room/PlacePopoverContainer";
@@ -801,9 +804,25 @@ class UIRoot extends Component {
   };
 
   renderEntryStartPanel = () => {
+    
     const { hasAcceptedProfile, hasChangedName } = this.props.store.state.activity;
     const promptForNameAndAvatarBeforeEntry = this.props.hubIsBound ? !hasAcceptedProfile : !hasChangedName;
 
+    /*
+      if (promptForNameAndAvatarBeforeEntry || !this.props.forcedVREntryType) {
+        this.setState({ entering: true });
+        this.props.hubChannel.sendEnteringEvent();
+
+        if (promptForNameAndAvatarBeforeEntry) {
+          this.pushHistoryState("entry_step", "profile");
+        } else {
+          this.onRequestMicPermission();
+          this.pushHistoryState("entry_step", "audio");
+        }
+      } else {
+        this.handleForceEntry();
+      }
+    */
     // TODO: What does onEnteringCanceled do?
     return (
       <>
@@ -1352,7 +1371,7 @@ class UIRoot extends Component {
               <RoomLayoutContainer
                 scene={this.props.scene}
                 store={this.props.store}
-                objectFocused={!!this.props.selectedObject}
+                //objectFocused={!!this.props.selectedObject}
                 streaming={streaming}
                 viewport={
                   <>
@@ -1361,12 +1380,16 @@ class UIRoot extends Component {
                     {(!this.props.selectedObject ||
                       (this.props.breakpoint !== "sm" && this.props.breakpoint !== "md")) && (
                       <ContentMenu>
-                        {showObjectList && (
+                        <TipsMenuButton 
+                        active={this.state.sidebarId === "tips"}
+                        onClick={() => this.toggleSidebar("tips")}
+                        />
+                        {/*showObjectList && (
                           <ObjectsMenuButton
                             active={this.state.sidebarId === "objects"}
                             onClick={() => this.toggleSidebar("objects")}
                           />
-                        )}
+                        )*/}
                         <PeopleMenuButton
                           active={this.state.sidebarId === "people"}
                           onClick={() => this.toggleSidebar("people")}
@@ -1381,7 +1404,7 @@ class UIRoot extends Component {
                       </ContentMenu>
                     )}
                     {!entered && !streaming && !isMobile && streamerName && <SpectatingLabel name={streamerName} />}
-                    {this.props.activeObject && (
+                    {/*this.props.activeObject && (
                       <ObjectMenuContainer
                         hubChannel={this.props.hubChannel}
                         scene={this.props.scene}
@@ -1392,7 +1415,7 @@ class UIRoot extends Component {
                           }
                         }}
                       />
-                    )}
+                      )*/}
                     {this.state.sidebarId !== "chat" && this.props.hub && (
                       <PresenceLog
                         inRoom={true}
@@ -1443,6 +1466,11 @@ class UIRoot extends Component {
                       {this.state.sidebarId === "objects" && (
                         <ObjectsSidebarContainer
                           hubChannel={this.props.hubChannel}
+                          onClose={() => this.setSidebar(null)}
+                        />
+                      )}
+                      {this.state.sidebarId === "tips" && (
+                        <TipsSidebarContainer
                           onClose={() => this.setSidebar(null)}
                         />
                       )}
@@ -1556,7 +1584,7 @@ class UIRoot extends Component {
                     )}
                     {entered && (
                       <>
-                        <AudioPopoverContainer scene={this.props.scene} />
+                        {/*<AudioPopoverContainer scene={this.props.scene} />*/}
                         {/* <SharePopoverContainer scene={this.props.scene} hubChannel={this.props.hubChannel} />
                         <PlacePopoverContainer
                           scene={this.props.scene}
@@ -1564,13 +1592,13 @@ class UIRoot extends Component {
                           mediaSearchStore={this.props.mediaSearchStore}
                           showNonHistoriedDialog={this.showNonHistoriedDialog}
                         /> */}
-                        {this.props.hubChannel.can("spawn_emoji") && (
+                        {/*{this.props.hubChannel.can("spawn_emoji") && (
                           <ReactionPopoverContainer
                             scene={this.props.scene}
                             className={styleUtils.showLg}
                             initialPresence={getPresenceProfileForSession(this.props.presences, this.props.sessionId)}
                           />
-                        )}
+                        )}*/}
                         {this.props.hubChannel.can("spawn_camera") && (
                           <ToolbarButton
                             icon={<CameraIcon />}
@@ -1581,9 +1609,13 @@ class UIRoot extends Component {
                             onClick={() => this.props.scene.emit("action_toggle_camera")}
                           />
                         )}
-                        <ChatToolbarButtonContainer
+                        {/*<ChatToolbarButtonContainer
                             className={styleUtils.showLg}
-                            onClick={() => this.toggleSidebar("chat")} />
+                          onClick={() => this.toggleSidebar("chat")} />*/}
+                        <TipsToolbarButton
+                            className={styleUtils.showLg}
+                            onClick={() => this.toggleSidebar("tips")} 
+                            />
                       </>
                     )}
 
@@ -1602,6 +1634,7 @@ class UIRoot extends Component {
                   <>
                     <SafernetPopoverContainer
                         scene={this.props.scene}
+                        entered={this.state.entered}
                     />
                     {entered && isMobileVR && (
                       <ToolbarButton
@@ -1657,9 +1690,19 @@ function UIRootHooksWrapper(props) {
       el.remove();
     }, 500);
 
+    props.scene.addEventListener("action_toggle_tips", () => {
+      this.setSidebar(this.props.scene.is('tips_on') ? null : 'tips')
+    });
+  
+    props.scene.addEventListener("action_toggle_chat", () => {
+      this.setSidebar(this.props.scene.is('chat_on') ? null : 'chat')
+    });
+
     return () => {
       clearTimeout(timeout);
       sceneEl.classList.remove(roomLayoutStyles.scene);
+      props.scene.removeEventListener("action_toggle_tips");
+      props.scene.removeEventListener("action_toggle_chat");
     };
   }, [props.scene]);
 
