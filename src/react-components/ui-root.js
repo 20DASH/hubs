@@ -1368,12 +1368,12 @@ class UIRoot extends Component {
                         active={this.state.sidebarId === "tips"}
                         onClick={() => this.toggleSidebar("tips")}
                         />
-                        {showObjectList && (
+                        {/*showObjectList && (
                           <ObjectsMenuButton
                             active={this.state.sidebarId === "objects"}
                             onClick={() => this.toggleSidebar("objects")}
                           />
-                        )}
+                        )*/}
                         <PeopleMenuButton
                           active={this.state.sidebarId === "people"}
                           onClick={() => this.toggleSidebar("people")}
@@ -1568,7 +1568,7 @@ class UIRoot extends Component {
                     )}
                     {entered && (
                       <>
-                        <AudioPopoverContainer scene={this.props.scene} />
+                        {/*<AudioPopoverContainer scene={this.props.scene} />*/}
                         {/* <SharePopoverContainer scene={this.props.scene} hubChannel={this.props.hubChannel} />
                         <PlacePopoverContainer
                           scene={this.props.scene}
@@ -1576,13 +1576,13 @@ class UIRoot extends Component {
                           mediaSearchStore={this.props.mediaSearchStore}
                           showNonHistoriedDialog={this.showNonHistoriedDialog}
                         /> */}
-                        {this.props.hubChannel.can("spawn_emoji") && (
+                        {/*{this.props.hubChannel.can("spawn_emoji") && (
                           <ReactionPopoverContainer
                             scene={this.props.scene}
                             className={styleUtils.showLg}
                             initialPresence={getPresenceProfileForSession(this.props.presences, this.props.sessionId)}
                           />
-                        )}
+                        )}*/}
                         {this.props.hubChannel.can("spawn_camera") && (
                           <ToolbarButton
                             icon={<CameraIcon />}
@@ -1593,9 +1593,9 @@ class UIRoot extends Component {
                             onClick={() => this.props.scene.emit("action_toggle_camera")}
                           />
                         )}
-                        <ChatToolbarButtonContainer
+                        {/*<ChatToolbarButtonContainer
                             className={styleUtils.showLg}
-                            onClick={() => this.toggleSidebar("chat")} />
+                          onClick={() => this.toggleSidebar("chat")} />*/}
                         <TipsToolbarButton
                             className={styleUtils.showLg}
                             onClick={() => this.toggleSidebar("tips")} 
