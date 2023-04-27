@@ -979,14 +979,14 @@
                     </a-entity>
                 </a-entity>
                 <a-entity in-world-hud visibility-while-frozen="visible: false; requireHoverOnNonMobile: false;" rotation="30 0 0" >
-                    <a-entity sprite="name: Background.png" scale="0.2 0.08 1" position="-0.34 -0.005 0" class="hud bg"></a-entity>
-                    <a-entity id="hud-presence-count" text="value: ; textAlign:center;" position="-0.30 -0.005 0.001"></a-entity>
-                    <a-entity class="invite-btn" position="0 0.18 0" scale="0.7 0.7 0.7" is-remote-hover-target tags="singleActionButton: true;">
-                        <a-entity mixin="rounded-text-action-button" slice9="width: 0.7" scale="0.8 0.8 1.0">
+                    <a-entity sprite="name: Background.png" scale="0.0 0.0 0.0" position="-0.34 -0.005 0" class="hud bg"></a-entity>
+                    <a-entity id="hud-presence-count" text="value: ; textAlign:center;" scale="0.0 0.0 0.0" position="-0.30 -0.005 0.001"></a-entity>
+                    <a-entity class="invite-btn" position="0 0.18 0" scale="0.0 0.0 0.0" is-remote-hover-target tags="singleActionButton: true;">
+                        <a-entity mixin="rounded-text-action-button" slice9="width: 0.7" scale="0.0 0.0 0.0">
                             <a-entity text=" value:invite; textAlign:center;" text-raycast-hack position="0 0 0.001"></a-entity>
                         </a-entity>
                     </a-entity>
-                    <a-entity visible="false" vr-mode-toggle-visibility id="hud-tooltip" position="-0.2 -0.2 0" rotation="-20 0 0" radius="0.025" opacity="0.35" class="hud bg">
+                    <a-entity visible="false" vr-mode-toggle-visibility id="hud-tooltip" position="-0.2 -0.2 0" scale="0.0 0.0 0.0" rotation="-20 0 0" radius="0.025" opacity="0.35" class="hud bg">
                         <a-entity text="value: ; textAlign:center; fontSize: 0.06; outlineWidth: 2%;" position="0.2 0.04 0.001"></a-entity>
                     </a-entity>
                     <a-entity
@@ -994,7 +994,7 @@
                         tags="singleActionButton: true"
                         sprite
                         mic-button="tooltip: #hud-tooltip; tooltipText: Mute Mic; activeTooltipText: Unmute Mic;"
-                        scale="0.1 0.1 0.1"
+                        scale="0.0 0.0 0.0"
                         position="-0.17 0 0.001"
                         class="hud mic"
                     ></a-entity>
@@ -1009,7 +1009,7 @@
                             image: spawn.png;
                             hoverImage: spawn-hover.png;
                             disabledImage: spawn-disabled.png;"
-                        scale="0.2 0.2 0.2"
+                        scale="0.0 0.0 0.0"
                         position="0 0 0.005"
                         class="hud spawn"
                     ></a-entity>
@@ -1026,7 +1026,7 @@
                             activeImage: pen_on.png;
                             activeHoverImage: pen_on-hover.png;
                             disabledImage: pen_off-disabled.png;"
-                        scale="0.1 0.1 0.1"
+                        scale="0.0 0.0 0.0"
                         position="0.17 0 0.001"
                         class="hud penhud"
                     ></a-entity>
@@ -1043,8 +1043,8 @@
                             activeImage: camera_on.png;
                             activeHoverImage: camera_on-hover.png;
                             disabledImage: camera_off-disabled.png;"
-                        scale="0.1 0.1 0.1"
-                        position="0.28 0 0.001"
+                        scale="0.2 0.2 0.2"
+                        position="0 0 0.005"    
                         class="hud camera-btn"
                     ></a-entity>
                 </a-entity>
