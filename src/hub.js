@@ -686,12 +686,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   // HACK - it seems if we don't initialize the mic track up-front, voices can drop out on iOS
   // safari when initializing it later.
   if (["iOS", "Mac OS"].includes(detectedOS) && ["safari", "ios"].includes(browser.name)) {
-    try {
+    /*try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (e) {
       remountUI({ showSafariMicDialog: true });
       return;
-    }
+    }*/
   }
 
   const hubId = getCurrentHubId();

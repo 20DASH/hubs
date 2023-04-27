@@ -804,9 +804,25 @@ class UIRoot extends Component {
   };
 
   renderEntryStartPanel = () => {
+    
     const { hasAcceptedProfile, hasChangedName } = this.props.store.state.activity;
     const promptForNameAndAvatarBeforeEntry = this.props.hubIsBound ? !hasAcceptedProfile : !hasChangedName;
 
+    /*
+      if (promptForNameAndAvatarBeforeEntry || !this.props.forcedVREntryType) {
+        this.setState({ entering: true });
+        this.props.hubChannel.sendEnteringEvent();
+
+        if (promptForNameAndAvatarBeforeEntry) {
+          this.pushHistoryState("entry_step", "profile");
+        } else {
+          this.onRequestMicPermission();
+          this.pushHistoryState("entry_step", "audio");
+        }
+      } else {
+        this.handleForceEntry();
+      }
+    */
     // TODO: What does onEnteringCanceled do?
     return (
       <>
@@ -1355,7 +1371,7 @@ class UIRoot extends Component {
               <RoomLayoutContainer
                 scene={this.props.scene}
                 store={this.props.store}
-                objectFocused={!!this.props.selectedObject}
+                //objectFocused={!!this.props.selectedObject}
                 streaming={streaming}
                 viewport={
                   <>
@@ -1388,7 +1404,7 @@ class UIRoot extends Component {
                       </ContentMenu>
                     )}
                     {!entered && !streaming && !isMobile && streamerName && <SpectatingLabel name={streamerName} />}
-                    {this.props.activeObject && (
+                    {/*this.props.activeObject && (
                       <ObjectMenuContainer
                         hubChannel={this.props.hubChannel}
                         scene={this.props.scene}
@@ -1399,7 +1415,7 @@ class UIRoot extends Component {
                           }
                         }}
                       />
-                    )}
+                      )*/}
                     {this.state.sidebarId !== "chat" && this.props.hub && (
                       <PresenceLog
                         inRoom={true}

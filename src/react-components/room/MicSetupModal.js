@@ -51,6 +51,7 @@ export function MicSetupModal({
           />
         </p>
         <div className={styles.audioCheckContainer}>
+      {/*
           <div className={styles.audioIoContainer}>
             <div className={styles.iconContainer}>
               <div>
@@ -67,6 +68,7 @@ export function MicSetupModal({
               </div>
               {permissionStatus === PermissionStatus.GRANTED && <> {micLevelBar}</>}
             </div>
+            
             <div className={styles.actionContainer}>
               {permissionStatus === PermissionStatus.GRANTED ? (
                 <>
@@ -139,6 +141,7 @@ export function MicSetupModal({
                 </div>
               )}
           </div>
+        */}
           <div className={styles.audioIoContainer}>
             <div className={styles.iconContainer}>
               <VolumeOffIcon className={styles.iconEnabled} style={{ marginRight: "5px" }} />
