@@ -274,6 +274,9 @@ export default class MediaDevicesManager extends EventEmitter {
   }
 
   async _startMicShare(constraints = { audio: {} }) {
+
+    return false;
+
     if (this.audioTrack) {
       this.audioTrack.stop();
     }
