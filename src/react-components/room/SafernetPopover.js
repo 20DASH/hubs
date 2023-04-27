@@ -15,7 +15,7 @@ function SafernetPopoverContent() {
       <span className={styles.titleBox} >Olá!</span>
       Você está prestes a interagir com conteúdos e discussões que falam sobre autoimagem, autoestima e outras questões emocionais relacionadas à vida digital.
       Essa experiência foi feita para reflexão, mas se você sente que esse tipo de conversa não vai te fazer bem nesse momento, respeite esse sentimento!
-      Fique à vontade para sair, e considere um dos canais de ajuda gratuitos disponíveis que temos por&nbsp;<Link to={{ pathname: "https://vitaalere.com.br/sobre-o-suicidio/prevencao/onde-procurar-ajuda/" }} target="_blank">aqui</Link>."
+      Fique à vontade para sair, e considere um dos canais de ajuda gratuitos disponíveis que temos por&nbsp;<a href="https://vitaalere.com.br/sobre-o-suicidio/prevencao/onde-procurar-ajuda/" target="_blank">aqui</a>."
      </p>
     </Column>
   );
