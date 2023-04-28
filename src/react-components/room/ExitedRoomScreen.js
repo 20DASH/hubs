@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState} from "react";
+import copy from "copy-to-clipboard";
 import PropTypes from "prop-types";
 import { defineMessages, FormattedMessage, useIntl } from "react-intl";
 import { LoadingScreenLayout } from "../layout/LoadingScreenLayout";
@@ -57,6 +58,13 @@ const messages = defineMessages({
 
 export function ExitedRoomScreen({ reason, showTerms, termsUrl, showSourceLink }) {
   const intl = useIntl();
+  const [hasCopied, setHasCopied] = useState(false)
+    
+  const onCopyClicked = e => {
+    e.preventDefault();
+    copy(document.location);
+    setHasCopied(true);
+  };
 
   let subtitle = null;
   if (reason === ExitReason.closed) {
@@ -121,8 +129,8 @@ export function ExitedRoomScreen({ reason, showTerms, termsUrl, showSourceLink }
       <>
         <b>{intl.formatMessage(messages[reason])}</b>
 
-        {reason === ExitReason.connectError && (
-          <p>
+        {/*reason === ExitReason.connectError && (
+           <p>
             <FormattedMessage
               id="exited-room-screen.connect-tcp"
               defaultMessage="You can try <a>connecting via TCP</a>, which may work better on some networks."
@@ -131,9 +139,34 @@ export function ExitedRoomScreen({ reason, showTerms, termsUrl, showSourceLink }
                 a: chunks => <a href={tcpUrl.toString()}>{chunks}</a>
               }}
             />
-          </p>
+            </p>
+        )*/}
+        {reason === ExitReason.connectError && (
+          <>
+            <p><span>Este espaço não é compatível com este browser. Para acessar a experiência copie e cole esse link diretamente no seu navegador.</span>
+            <br />
+            </p>
+            <Button as="a" preset="accept" href="googlechromes://postsnaopostados.com.br">Abrir no Chrome</Button>
+            <p><br />
+            <span>ou</span>
+            <br />
+            
+                <input type="text" style={{
+                   width: '15em',
+                   background: 'white',
+                   color: 'black',
+                   fontSize: '12pt',
+                   padding: '0.4em',
+                   borderRadius: '10px',
+                   border: 'none',
+                }} readOnly onFocus={e => e.target.select()} value={document.location} />
+                <a className="copy-link" href="#" onClick={onCopyClicked}>
+                  {hasCopied ? "copiado!" : "copiar"}
+                </a>
+            </p>
+          </>
         )}
-        {![ExitReason.left, ExitReason.disconnected, ExitReason.sceneError].includes(reason) && (
+        {/*{![ExitReason.left, ExitReason.disconnected, ExitReason.sceneError].includes(reason) && (
           <p>
             <FormattedMessage
               id="exited-room-screen.create-room"
@@ -149,6 +182,7 @@ export function ExitedRoomScreen({ reason, showTerms, termsUrl, showSourceLink }
         <Button as="a" preset="accept" href={window.location.href}>
           <FormattedMessage id="exited-room-screen.refresh-page-button" defaultMessage="Refresh Page" />
         </Button>
+            */}
       </>
     );
   }

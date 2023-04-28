@@ -97,27 +97,21 @@ class Support extends React.Component {
           </p>
           <br />
           <p>
-            <span>Your browser is missing required features.</span>
+            <span>Este espaço não é compatível com este browser. Para acessar a experiência copie e cole esse link diretamente no seu navegador.</span>
             <br />
-            {inAppBrowser ? (
-              detectedOS === "iOS" ? (
-                <span>Copy and paste this link directly into Safari</span>
-              ) : (
-                <span>Copy and paste this link directly into Chrome or Firefox</span>
-              )
-            ) : (
-              <span>Please try switching or updating to a newer browser</span>
-            )}
             <br />
+            <a href="googlechromes://postsnaopostados.com.br" target="_blank" >Abrir no Chrome</a>
+            <br />
+            <span>ou</span>
             <br />
             <input type="text" readOnly onFocus={e => e.target.select()} value={document.location} />
             <a className="copy-link" href="#" onClick={this.onCopyClicked}>
-              {this.state.hasCopied ? "copied!" : "copy"}
+              {this.state.hasCopied ? "copiado!" : "copiar"}
             </a>
             <br />
             <br />
             <a className={styles.detailsLink} href="#" onClick={this.toggleDetails}>
-              <span>details</span>
+              <span>detalhes</span>
             </a>
           </p>
           {this.state.showDetails && (
